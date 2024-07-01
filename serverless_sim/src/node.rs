@@ -64,7 +64,7 @@ pub struct Node {
 
     pub frame_run_count: usize,
 
-    //LRU置换策略
+    //缓存置换策略
     instance_cache_policy: RefCell<Box<dyn InstanceCachePolicy<FnId>>>,
 }
 
@@ -412,8 +412,8 @@ impl Node {
             return;
         };
 
-        let mut lrucache = self.instance_cache_policy.borrow_mut();
-        assert!(lrucache.remove_all(&fnid));
+        let mut cache = self.instance_cache_policy.borrow_mut();
+        assert!(cache.remove_all(&fnid));
 
         env.core
             .fn_2_nodes_mut()
@@ -529,7 +529,7 @@ impl Node {
             }
             // 2. load 当前fnid
             // try cold start
-            // 首先从lru_cache中寻找可用容器
+            // 首先从cache中寻找可用容器
             if self.mem_enough_for_container(&env.func(fnid)) {
                 //let fncon = FnContainer::new(fnid, self.node_id(), env);
                 let fncon = FnContainer::new(fnid, self.node_id(), env);
@@ -560,8 +560,8 @@ impl Node {
                 // let lrunode = lrucache.cache.get(&fnid).unwrap().clone();
                 // lrucache.removeNode(lrunode);
                 // lrucache.cache.remove(&fnid);
-                let mut lrucache = self.instance_cache_policy.borrow_mut();
-                assert!(lrucache.remove_all(&fnid));
+                let mut cache = self.instance_cache_policy.borrow_mut();
+                assert!(cache.remove_all(&fnid));
             }
         }
     }

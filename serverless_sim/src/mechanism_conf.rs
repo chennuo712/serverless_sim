@@ -223,6 +223,12 @@ impl MechConfig {
                     .expect("Please offer lru cache policy arg");
                 Box::new(crate::cache::lru::LRUCache::new(limit))
             }
+            "fifo" => {
+                let limit = arg
+                    .parse::<usize>()
+                    .expect("Please offer fifo cache policy arg");
+                Box::new(crate::cache::lru::LRUCache::new(limit))
+            }
             "no_evict" => Box::new(crate::cache::no_evict::NoEvict::new()),
             _ => panic!("new_instance_cache_policy"),
         }
