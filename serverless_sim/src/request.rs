@@ -1,4 +1,9 @@
-use std::{ cell::{ Ref, RefMut }, collections::{ BTreeMap, HashMap, HashSet }, thread::sleep, time::Duration };
+use std::{
+    cell::{Ref, RefMut},
+    collections::{BTreeMap, HashMap, HashSet},
+    thread::sleep,
+    time::Duration,
+};
 
 use daggy::petgraph::visit::Topo;
 
@@ -360,11 +365,9 @@ impl SimEnv {
             for (dag_i, &(mut avg_frequency, cv)) in env.help.fn_call_frequency().iter() {
                 if env.help.config().request_freq_low() {
                     avg_frequency *= 0.1;
-                }
-                else if env.help.config().request_freq_middle() {
+                } else if env.help.config().request_freq_middle() {
                     avg_frequency *= 0.2;
-                }
-                else {
+                } else {
                     avg_frequency *= 0.3;
                 }
                 // avg_frequency *= 100.0;
@@ -376,7 +379,6 @@ impl SimEnv {
                 *accum_freq = random_frequency - (req_cnt as f64);
 
                 total_req_cnt += req_cnt;
-
 
                 for _ in 0..req_cnt {
                     let request = Request::new(env, *dag_i, env.core.current_frame());
