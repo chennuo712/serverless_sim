@@ -5,12 +5,13 @@
     "no_scale": null
   },
   "scale_num": {
-    "no": null,
+    "rela": null,
     "hpa": null,
     "full_placement": null,
-    "rela": null,
-    "temp_scaler": null,
-    "lass": null
+    "ensure_scaler": null,
+    "no": null,
+    "lass": null,
+    "temp_scaler": null
   },
   "scale_down_exec": {
     "default": null
@@ -20,16 +21,18 @@
     "least_task": null
   },
   "sche": {
-    "bp_balance": null,
-    "random": null,
-    "greedy": null,
+    "consistenthash": null,
+    "ensure_scheduler": null,
+    "faasflow": null,
+    "load_least": null,
     "rotate": null,
     "hash": null,
-    "pass": null,
     "pos": null,
-    "consistenthash": null,
-    "faasflow": null,
-    "fnsche": null
+    "random": null,
+    "bp_balance": null,
+    "fnsche": null,
+    "greedy": null,
+    "pass": null
   },
   "filter": {
     "careful_down": null
